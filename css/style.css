@@ -1,0 +1,23 @@
+body{
+    font-family: 'Segoe UI';
+    color: #7814FF;
+}
+#main{
+    border: 1px solid black;
+    width: 500px;
+    height: auto;
+    margin: auto;
+}
+#area{
+    margin-left: 10px;
+}
+.modelo{
+    margin-left: 10px;
+}
+.btn_vender{
+    color: white;
+    background-color: #7814FF;
+    border-radius: 8px;
+    padding-inline: 30px;
+    margin-left: 30px;
+}

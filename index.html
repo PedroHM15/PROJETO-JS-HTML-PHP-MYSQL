@@ -1,0 +1,51 @@
+<!php include "php/queryAlocacao.php">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/stylePlanta.css" preload>
+    <title>Fábrica de Automóveis</title>
+</head>
+<body>
+    <h1 class="h1">Fábrica de Automóveis</h1>
+    <div id="main">
+    </div>
+    <script>
+        fetch("php/queryAlocacao.php")
+        .then(function(res){
+            return res.json()
+        })
+        .then(function(data){
+            console.log(data)
+
+            let areas = data.map(({area}) => parseInt(area)) 
+
+            let codHtml = ""
+
+            for(let i = 1; i<=6; i++){
+                if(areas.includes(i)){
+                    codHtml += `<div class="area${i}" style="color: white ; background-color: blue" onclick = "area(${i})">${i}</div>`
+                }
+                else{
+                    codHtml += `<div class="area${i}" onclick="avisoSemCarro()">${i}</div>`
+                }
+            }
+            document.getElementById("main").innerHTML = codHtml
+        })
+        .catch(function(err){
+            console.log(err)
+        })
+
+        function area(num){
+            localStorage.setItem("titulo", `Area ${num}`)
+            localStorage.setItem("area", num)
+            window.location.href = "autos.html"
+        }
+        function avisoSemCarro(){
+            alert("Esta area nao tem caro disponivel")
+        }
+    </script>
+</body>
+</html>

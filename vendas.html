@@ -1,0 +1,27 @@
+<!php include "php/queryClientes.php">
+<!php include "php/queryConcessionarias.php">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styleVendas.css">
+    <title>Fábrica de Automóveis</title>
+</head>
+<body>
+    <div id="main">
+        <h1 id="modelo">XYZ</h1>
+        <label class="cliente">Cliente: </label>
+        <select id="cliente_select">
+        </select>
+        <br><br>
+        <label class="concessionaria">Concessionaria: </label>
+        <select id="con_select">
+        </select>
+        <br><br>
+        <button id="btn_confirmar" onclick="confirmar()">Confirmar</button>
+        <br><br>
+    </div>
+    <script src="js/vendas.js"></script>
+</body>
+</html>

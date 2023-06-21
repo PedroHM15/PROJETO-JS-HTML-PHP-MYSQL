@@ -1,0 +1,91 @@
+<!php include "php/modelosArea1.php">
+<!php include "php/queryAlocacao.php">
+<!php include "php/automoveis.php">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Fábrica de Automóveis</title>
+</head>
+<body>
+    <div id="main">
+        <h1 id="area"></h1>
+        <div id="label2"></div>
+    </div>
+    
+    
+    <script>
+        let titulo = localStorage.getItem("titulo")
+        
+        document.getElementById("area").innerHTML = titulo
+
+        let veiculo = []
+        let nome_autos = []
+        let num_autos = []
+        let cod = ""
+
+            fetch("php/queryAlocacao.php")
+                .then(function(res){
+                    return res.json()
+                })
+                .then(function(data){
+                    let area = localStorage.getItem("area")
+                    let lista = ""
+                    for (let i = 0; i< data.length; i++){
+                        if(data[i].area==area){
+                            num_autos.push(parseInt(data[i].automovel))
+                        }
+                    }
+                    
+                    document.getElementById("label2").innerHTML = lista
+                })
+                .catch(function(err){
+                    console.log(err)
+                }) 
+
+            fetch("php/automoveis.php")
+            .then(function(res){
+                    return res.json()
+                })
+                .then(function(data){
+                    console.log(data)
+
+                    for (let i = 0; i< data.length; i++){
+                        for(let j = 0; j < num_autos.length ; j++){
+                            if(data[i].id==num_autos[j]){
+                                nome_autos.push(data[i].modelo)
+                                veiculo.push(`${data[i].modelo} | ${data[i].preco}`)
+                            }
+                        }
+                    }
+                })
+                .catch(function(err){
+                    console.log(err)
+                }) 
+            
+        
+ 
+        function ir_vendas(num){
+            let modelo = document.getElementById(`label${num}`)
+            let modelo2 = modelo.textContent
+            let texto = ""
+            for(let x = 0; x<=modelo2.length ; x++){
+                //console.log("a: "+modelo2.substring(x, x+1))
+                if(modelo2.substring(x, x+1)=='|'){
+                    //console.log("Entrou")
+                    texto = modelo2.substring(x,0)
+                    //console.log("Texto: "+texto)
+                    localStorage.setItem("modelo", texto)
+                    break
+                }
+                
+            }
+
+            window.location.href = "vendas.html"
+        }
+
+    </script>
+</body>
+</html>

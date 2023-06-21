@@ -1,0 +1,61 @@
+body{
+    font-family: 'Segoe UI';
+}
+#main{
+    border: 1px solid black;
+    width: 1000px;
+    height: auto;
+    margin: auto;
+    background-color: #707070;
+}
+.h1{
+    text-align: center;
+}
+.area1{
+    border: 1px solid black;
+    width: 80px;
+    height: 100px;
+    margin-top: 10px;
+    margin-left: 25px;
+    text-align: center;
+}
+.area2{
+    border: 1px solid black;
+    width: 80px;
+    height: 100px;
+    margin-top: 30px;
+    margin-left: 180px;
+    text-align: center;
+}
+.area3{
+    border: 1px solid black;
+    width: 80px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: 50px;
+    text-align: center;
+}
+.area4{
+    border: 1px solid black;
+    width: 80px;
+    height: 100px;
+    margin-top: -250px;
+    margin-left: 300px;
+    text-align: center;
+}
+.area5{
+    border: 1px solid black;
+    width: 80px;
+    height: 100px;
+    margin-top: -120px;
+    margin-left: 450px;
+    text-align: center;
+}
+.area6{
+    border: 1px solid black;
+    width: 80px;
+    height: 100px;
+    margin-top: 200px;
+    margin-left: 270px;
+    text-align: center;
+}

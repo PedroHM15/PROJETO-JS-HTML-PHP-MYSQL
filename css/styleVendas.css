@@ -1,0 +1,34 @@
+body{
+    background-color: white;
+    font-family: 'Segoe UI';
+    color: #7814FF;
+}
+#main{
+    border: 1px solid black;
+    width: 500px;
+    height: auto;
+    margin: auto;
+}
+#modelo{
+    margin-left: 10px;
+}
+#cliente_select{
+    margin-left: 137px;
+}
+#con_select{
+    margin-left: 143px;
+}
+#btn_confirmar{
+    background-color: #7814FF;
+    color: white;
+    margin-left: 41%;
+    border-radius: 7px;
+    padding-inline: 22px;
+    padding-block: 5px;
+}
+.cliente{
+    margin-left: 10px;
+}
+.concessionaria{
+    margin-left: 10px;
+}
