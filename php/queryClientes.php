@@ -1,6 +1,6 @@
 <?php
 require_once("conexao.php");
-$sql = "SELECT * FROM cliente";
+$sql = "SELECT * FROM clientes";
 
 $resultado = $conexao->query($sql);
 

@@ -1,71 +1,66 @@
 let titulo = localStorage.getItem("titulo")
-let area = localStorage.getItem("area")
-document.getElementById("area").innerHTML = titulo
-
-console.log(titulo +" "+ area)
-
-let cod = ""
-if(titulo == "Area 1"){
-    fetch("php/modelosArea1.php")
-        .then(function(res){
-            return res.json()
-        })
-        .then(function(modelos){
-            let lista = ""
-            for (let i = 0; i< modelos.length; i++){
-                lista += `<label class="modelo" id="label${i}">${modelos[i].modelo} | ${modelos[i].preco}</label>`+
-                '<button class="btn_vender" onclick="ir_vendas('+i+')">Vender</button>'+
-                '<br><br></br>'
-            }
-            document.getElementById("label2").innerHTML = lista
-}) 
-}
-else if(titulo == "Area 2"){
-    fetch("php/modelosArea2.php")
-        .then(function(res){
-            return res.json()
-        })
-        .then(function(modelos){
-            let lista = ""
-            for (let i = 0; i< modelos.length; i++){
-                lista += `<label class="modelo" id="label${i}">${modelos[i].modelo} | ${modelos[i].preco}</label>`+
-                '<button class="btn_vender" onclick="ir_vendas('+i+')">Vender</button>'+
-                '<br><br></br>'
-            }
-            document.getElementById("label2").innerHTML = lista
-}) 
-}
-else if(titulo == "Area 4"){
-    fetch("php/modelosArea4.php")
-        .then(function(res){
-            return res.json()
-        })
-        .then(function(modelos){
-            let lista = ""
-            for (let i = 0; i< modelos.length; i++){
-                lista += `<label class="modelo" id="label${i}">${modelos[i].modelo} | ${modelos[i].preco}</label>`+
-                '<button class="btn_vender" onclick="ir_vendas('+i+')">Vender</button>'+
-                '<br><br></br>'
-            }
-            document.getElementById("label2").innerHTML = lista
-})
-}
-
-function ir_vendas(num){
-    let modelo = document.getElementById(`label${num}`)
-    let modelo2 = modelo.textContent
-    let texto = ""
-    for(let x = 0; x<=modelo2.length ; x++){
-        //console.log("a: "+modelo2.substring(x, x+1))
-        if(modelo2.substring(x, x+1)=='|'){
-            //console.log("Entrou")
-            texto = modelo2.substring(x,0)
-            //console.log("Texto: "+texto)
-            localStorage.setItem("modelo", texto)
-            break
-        }
         
-    }
-
-    window.location.href = "vendas.html"
-}
+        document.getElementById("area").innerHTML = titulo
+        
+        let veiculo = []
+        let nome_autos = []
+        let num_autos = []
+        let cod = ""
+        
+            fetch("php/queryAlocacao.php")
+                .then(function(res){
+                    return res.json()
+                })
+                .then(function(data){
+                    let area = localStorage.getItem("area")
+                    let lista = ""
+                    for (let i = 0; i< data.length; i++){
+                        if(data[i].area==area && data[i].quantidade != 0){
+                            num_autos.push(parseInt(data[i].automovel))
+                        }
+                    }
+                    
+                    document.getElementById("label2").innerHTML = lista
+                })
+                .catch(function(err){
+                    console.log(err)
+                }) 
+        
+            fetch("php/automoveis.php")
+            .then(function(res){
+                    return res.json()
+                })
+                .then(function(data){
+                    for (let i = 0; i< data.length; i++){
+                        for(let j = 0; j < num_autos.length ; j++){
+                            if(data[i].id==num_autos[j]){
+                                console.log(data[i].modelo)
+                                nome_autos.push(data[i].modelo)
+                                
+                                veiculo.push(`${data[i].modelo} | ${data[i].preco}`)
+                                console.log(nome_autos[j])
+                                
+                            }
+                        }
+                    }
+                    for (let i = 0; i<veiculo.length; i++){
+                        cod += `<label class="modelo">${veiculo[i]}</label>`+
+                                `<button class="btn_vender" onclick="ir_vendas('${nome_autos[i]}' , ${num_autos[i]})">Vender</button>`+
+                                '<br><br></br>'
+                    }
+                    document.getElementById("label2").innerHTML = cod
+                    
+                })
+                .catch(function(err){
+                    console.log(err)
+                }) 
+            
+        
+        
+        function ir_vendas(modelo, id){
+            
+            localStorage.setItem("textoModelo", modelo)
+            localStorage.setItem("idModelo", id)
+        
+            window.location.href = "vendas.html"
+        }

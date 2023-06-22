@@ -1,3 +1,4 @@
+<!php include "php/queryAlocacao.php">
 <!php include "php/queryClientes.php">
 <!php include "php/queryConcessionarias.php">
 <!DOCTYPE html>
@@ -11,16 +12,18 @@
 <body>
     <div id="main">
         <h1 id="modelo">XYZ</h1>
-        <label class="cliente">Cliente: </label>
-        <select id="cliente_select">
-        </select>
-        <br><br>
-        <label class="concessionaria">Concessionaria: </label>
-        <select id="con_select">
-        </select>
-        <br><br>
-        <button id="btn_confirmar" onclick="confirmar()">Confirmar</button>
-        <br><br>
+            <form action="php/alteracao.php" method="post">
+                <label class="cliente">Cliente: </label>
+                <select id="cliente_select">
+                </select>
+                <br><br>
+                <label class="concessionaria">Concessionaria: </label>
+                <select id="con_select" name="id">
+                </select>
+                <br><br>
+                <button id="btn_confirmar" onclick="confirmar()">Confirmar</button>
+                <br><br>
+            </form>
     </div>
     <script src="js/vendas.js"></script>
 </body>
