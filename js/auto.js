@@ -13,14 +13,14 @@ let titulo = localStorage.getItem("titulo")
                 })
                 .then(function(data){
                     let area = localStorage.getItem("area")
-                    let lista = ""
+                    
                     for (let i = 0; i< data.length; i++){
                         if(data[i].area==area && data[i].quantidade != 0){
                             num_autos.push(parseInt(data[i].automovel))
                         }
                     }
                     
-                    document.getElementById("label2").innerHTML = lista
+                 
                 })
                 .catch(function(err){
                     console.log(err)
